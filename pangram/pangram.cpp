@@ -8,6 +8,32 @@ bool is_pangram(std::string str) {
     /**
      * Instead of the usual 'seen' check for 26, let's do
      * the reverse. Mark all as unseen and remove them
+     * on seeing. If we've seen everything that we need to see
+     * we're done!
+     */
+    std::bitset<26> not_seen;
+    not_seen.set(); // Set all
+
+    for (auto c: str) {
+       auto l = tolower(c);
+       if (!isalpha(l)) {
+           continue;
+       }
+
+       not_seen.reset(l-'a');
+       if (not_seen.none()) {
+           return true;
+       }
+    }
+
+    return false;
+}
+
+#if 0 // Alternate approach using hashmap
+bool is_pangram(std::string str) {
+    /**
+     * Instead of the usual 'seen' check for 26, let's do
+     * the reverse. Mark all as unseen and remove them
      * on seeing. If we've seen everything we need to see
      * we're done!
      */
@@ -30,5 +56,6 @@ bool is_pangram(std::string str) {
 
     return false;
 }
+#endif
 
 }  // namespace pangram
