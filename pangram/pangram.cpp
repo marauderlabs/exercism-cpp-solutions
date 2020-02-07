@@ -1,10 +1,11 @@
 #include "pangram.h"
 
+#include <bitset>
 #include <unordered_set>
 
 namespace pangram {
 
-bool is_pangram(std::string str) {
+bool is_pangram(const std::string &str) {
     /**
      * Instead of the usual 'seen' check for 26, let's do
      * the reverse. Mark all as unseen and remove them
